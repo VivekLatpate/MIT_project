@@ -20,12 +20,15 @@ const PUNE_LOCATIONS = {
   'Hadapsar': [18.4966, 73.9419],
   'Wanowrie': [18.4966, 73.9419],
   'Kondhwa': [18.4569, 73.9013],
+  'Kondhawa': [18.4569, 73.9013], // Alternative spelling
   'Kharadi': [18.5489, 73.9047],
   'Vishrantwadi': [18.5489, 73.9047],
   'Airport': [18.5821, 73.9197],
   'Hinjewadi': [18.5916, 73.7389],
   'Baner': [18.5596, 73.7863],
-  'Aundh': [18.5596, 73.7863]
+  'Aundh': [18.5596, 73.7863],
+  'BharatiVidyapeeth': [18.5204, 73.8567], // Pune city center coordinates
+  'Bibwewadi': [18.5204, 73.8567] // Pune city center coordinates
 }
 
 const PuneCrimeMap = ({ data }) => {
@@ -266,6 +269,107 @@ const PuneCrimeMap = ({ data }) => {
           </div>
         </div>
       </div>
+
+      {/* Top Pune Areas by Crime Rate */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+      >
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Pune Areas by Crime Rate</h3>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Rank
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Area
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total Crimes
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Region
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              <tr className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedLocation({ location: 'Kondhawa', totalCrimes: 95, coordinates: PUNE_LOCATIONS['Kondhwa'] || [0, 0], crimeBreakdown: {}, years: new Set() })}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  #1
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  Kondhawa
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  95
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  N/A
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedLocation({ location: 'Hadapsar', totalCrimes: 87, coordinates: PUNE_LOCATIONS['Hadapsar'] || [0, 0], crimeBreakdown: {}, years: new Set() })}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  #2
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  Hadapsar
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  87
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  N/A
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedLocation({ location: 'Yerwada', totalCrimes: 83, coordinates: PUNE_LOCATIONS['Yerwada'] || [0, 0], crimeBreakdown: {}, years: new Set() })}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  #3
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  Yerwada
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  83
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  N/A
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedLocation({ location: 'BharatiVidyapeeth', totalCrimes: 78, coordinates: [18.5204, 73.8567], crimeBreakdown: {}, years: new Set() })}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  #4
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  BharatiVidyapeeth
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  78
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  N/A
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedLocation({ location: 'Bibwewadi', totalCrimes: 62, coordinates: [18.5204, 73.8567], crimeBreakdown: {}, years: new Set() })}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  #5
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  Bibwewadi
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  62
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  N/A
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </motion.div>
     </motion.div>
   )
 }

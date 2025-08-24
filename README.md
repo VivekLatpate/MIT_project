@@ -1,215 +1,135 @@
-# 🚨 Pune Crime Analytics Dashboard
+# Maharashtra Crime Analytics Dashboard
 
-A comprehensive web application for visualizing and analyzing women-related crime data in Pune city. Built with React, Tailwind CSS, and interactive mapping technologies.
+A comprehensive web application for visualizing and analyzing women-related crime data across Maharashtra state, with a focus on Pune city and the broader state perspective.
 
-## ✨ Features
+## Features
 
-### 📊 Data Visualization
-- **Interactive Heatmap**: Visual representation of crime distribution across locations and crime types
-- **Summary Statistics**: Key metrics including total crimes, averages, and top crime types
-- **Responsive Charts**: Built with Plotly.js for smooth interactions
+### 🏙️ Pune City View
+- **Crime Heatmap**: Interactive heatmap visualization of crime patterns
+- **Interactive Map**: Geographic representation of crime incidents
+- **Data Filters**: Filter by year and crime type
+- **Real-time Updates**: Dynamic data filtering and visualization
 
-### 🗺️ Interactive Map
-- **Pune City Map**: OpenStreetMap integration with Leaflet.js
-- **Crime Heat Layer**: Color-coded markers showing crime intensity
-- **Location Details**: Click markers to view detailed crime breakdowns
-- **Geographic Context**: Real coordinates for major Pune areas
+### 🌍 Maharashtra State View
+- **State-wide Analysis**: Comprehensive crime data across 30 districts
+- **Regional Breakdown**: Crime statistics by geographic regions (Konkan, Western Maharashtra, Vidarbha, Marathwada, Northern Maharashtra)
+- **District Comparison**: Top districts by crime rate analysis
+- **Interactive Map**: Simplified map visualization with district markers
+- **Trend Analysis**: Year-over-year crime trend indicators
 
-### 🔍 Advanced Filtering
-- **Year-based Filtering**: Filter data by specific years or view all time periods
-- **Crime Type Filtering**: Focus on specific crime categories
-- **Real-time Updates**: Dynamic filtering with instant visual feedback
-- **Statistics Panel**: Detailed breakdowns for each crime type
+### 📊 Crime Categories
+- **Assault on Women (354)**: Physical assault incidents
+- **Rape (376/511)**: Sexual assault cases
+- **Kidnapping/Abduction (336&364)**: Abduction incidents
+- **Cruelty by Husband/Relatives (498-A)**: Domestic violence cases
 
-### 📁 Data Management
-- **Multiple Formats**: Support for Excel (.xlsx, .xls) and CSV files
-- **Drag & Drop**: Intuitive file upload interface
-- **Data Validation**: Automatic format checking and error handling
-- **Sample Dataset**: Included sample data for immediate testing
+### 🔍 Data Coverage
+- **Time Period**: 2015, 2017, 2018, 2019, 2020
+- **Geographic Coverage**: 30 districts across Maharashtra
+- **Data Source**: Official crime statistics
 
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn package manager
+- Node.js (v14 or higher)
+- npm or yarn
 
 ### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd heatmap
-   ```
-
-2. **Install dependencies**
+1. Clone the repository
+2. Navigate to the project directory
+3. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Start the development server**
+### Running the Application
+1. Start the development server:
    ```bash
    npm run dev
    ```
+2. Open your browser and navigate to `http://localhost:5173`
 
-4. **Open your browser**
-   Navigate to `http://localhost:5173`
+### Using the Dashboard
 
-## 📊 Data Format Requirements
+#### Uploading Data
+1. Use the upload interface to load your CSV file
+2. Ensure your CSV has the following columns:
+   - `Location`: District name
+   - `Year`: Year of data
+   - `Assault on Women (354)`: Assault incidents count
+   - `Rape (376/511)`: Rape cases count
+   - `Kidnapping/Abduction (336&364)`: Abduction count
+   - `Cruelty by Husband/Relatives (498-A)`: Domestic violence count
 
-Your Excel/CSV file should have the following structure:
+#### Switching Between Views
+- **Pune City Tab**: Focused analysis of Pune city crime data
+- **Maharashtra State Tab**: State-wide analysis across all districts
 
-| Location | Year | Assault | Rape | Kidnapping | Cruelty | Dowry | Harassment |
-|----------|------|---------|------|------------|---------|-------|------------|
-| Koregaon Park | 2023 | 15 | 8 | 3 | 12 | 5 | 18 |
-| Deccan Gymkhana | 2023 | 22 | 5 | 1 | 18 | 3 | 25 |
-| Viman Nagar | 2023 | 18 | 12 | 4 | 25 | 8 | 22 |
+#### Filtering Data
+- **Year Filter**: Select specific years or view all years
+- **Crime Type Filter**: Focus on specific crime categories
+- **Real-time Updates**: Filters apply immediately to all visualizations
 
-### Required Columns:
-- **Location**: Police station or area name
-- **Year**: Year of the crime data
-- **Crime Categories**: Any number of columns with numeric crime counts
+## Data Structure
 
-### Data Guidelines:
-- Use consistent location names (they'll be mapped to coordinates)
-- Ensure numeric values for crime counts
-- Include at least one data row beyond headers
-- File size should be under 10MB
+The application expects CSV data with the following format:
 
-## 🗺️ Location Mapping
+```csv
+Location,Year,Assault on Women (354),Rape (376/511),Kidnapping/Abduction (336&364),Cruelty by Husband/Relatives (498-A)
+Mumbai,2015,48,22,26,24
+Pune,2015,28,13,14,12
+...
+```
 
-The application includes pre-mapped coordinates for major Pune areas:
+## Features in Detail
 
-- **Central Areas**: Deccan Gymkhana, Camp, Bund Garden
-- **North**: Yerwada, Vishrantwadi, Airport
-- **East**: Viman Nagar, Kalyani Nagar, Kharadi
-- **South**: Hadapsar, Wanowrie, Kondhwa
-- **West**: Khadki, Hinjewadi, Baner, Aundh
-- **Popular Areas**: Koregaon Park
+### Maharashtra State Analysis
+- **District Markers**: Interactive markers showing crime intensity
+- **Regional Classification**: Districts grouped by geographic regions
+- **Statistics Dashboard**: Key metrics including total crimes, district count, and regional breakdown
+- **Top Districts Table**: Ranking of districts by total crime count
+- **District Details**: Click on any district to view detailed crime breakdown
 
-*Note: For locations not in the predefined list, you can add coordinates in the `PUNE_LOCATIONS` object in `PuneCrimeMap.jsx`*
+### Interactive Elements
+- **Hover Effects**: District markers show crime counts on hover
+- **Click Interactions**: Select districts for detailed analysis
+- **Responsive Design**: Works on desktop and mobile devices
+- **Smooth Animations**: Framer Motion animations for enhanced UX
 
-## 🎨 Customization
+## Technical Stack
 
-### Styling
-- **Tailwind CSS**: Easy color scheme modifications
-- **Custom Components**: Reusable UI components with consistent styling
-- **Responsive Design**: Mobile-first approach with breakpoint optimizations
+- **Frontend**: React.js with JSX
+- **Styling**: Tailwind CSS with custom utilities
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Package Manager**: npm
 
-### Data Processing
-- **Flexible Parsing**: Easy to modify data processing logic
-- **Extensible Filters**: Add new filter types in the sidebar
-- **Chart Configuration**: Customize Plotly.js chart options
+## File Structure
 
-### Map Features
-- **Tile Layers**: Switch between different map providers
-- **Marker Styling**: Customize marker colors, sizes, and interactions
-- **Popup Content**: Modify information displayed in location popups
-
-## 🛠️ Technical Stack
-
-- **Frontend**: React 18 with Vite
-- **Styling**: Tailwind CSS with custom components
-- **Charts**: Plotly.js for interactive visualizations
-- **Maps**: Leaflet.js with OpenStreetMap tiles
-- **File Processing**: xlsx library for Excel/CSV parsing
-- **Animations**: Framer Motion for smooth transitions
-- **Icons**: Lucide React for consistent iconography
-
-## 📱 Responsive Design
-
-The application is fully responsive and optimized for:
-- **Desktop**: Full dashboard with sidebar and main content
-- **Tablet**: Adaptive layout with collapsible sidebar
-- **Mobile**: Stacked layout with touch-friendly interactions
-
-## 🔧 Development
-
-### Project Structure
 ```
 src/
 ├── components/
-│   ├── UploadData.jsx      # File upload and parsing
-│   ├── HeatmapChart.jsx    # Crime heatmap visualization
-│   ├── PuneCrimeMap.jsx    # Interactive map component
-│   └── SidebarFilters.jsx  # Filtering and statistics
-├── App.jsx                 # Main application component
-├── main.jsx               # Application entry point
-└── index.css              # Global styles and Tailwind
+│   ├── MaharashtraCrimeMap.jsx    # Maharashtra state analysis
+│   ├── PuneCrimeMap.jsx           # Pune city map
+│   ├── HeatmapChart.jsx           # Crime heatmap
+│   ├── SidebarFilters.jsx         # Data filters
+│   └── UploadData.jsx             # Data upload interface
+├── App.jsx                        # Main application component
+└── index.css                      # Custom styles and utilities
 ```
 
-### Key Components
-
-#### UploadData
-- Handles file upload via drag & drop or file picker
-- Supports Excel (.xlsx, .xls) and CSV formats
-- Validates file format and size
-- Parses data and converts to application format
-
-#### HeatmapChart
-- Creates interactive heatmap using Plotly.js
-- Displays crime distribution across locations and types
-- Shows summary statistics and key metrics
-- Responsive design with custom color schemes
-
-#### PuneCrimeMap
-- Interactive map using Leaflet.js
-- Crime intensity visualization with color-coded markers
-- Location-based crime breakdowns
-- Geographic context for Pune city
-
-#### SidebarFilters
-- Year and crime type filtering
-- Real-time statistics for each crime category
-- Quick action buttons for common filters
-- Results summary with progress indicators
-
-## 🚀 Deployment
-
-### Build for Production
-```bash
-npm run build
-```
-
-### Deploy Options
-- **Vercel**: Zero-config deployment
-- **Netlify**: Drag & drop deployment
-- **GitHub Pages**: Static site hosting
-- **AWS S3**: Scalable cloud hosting
-
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+4. Submit a pull request
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
-## 🆘 Support
+## Support
 
-### Common Issues
-
-**Map not loading**: Ensure internet connection for OpenStreetMap tiles
-**File upload errors**: Check file format and size (max 10MB)
-**Charts not rendering**: Verify data format matches requirements
-
-### Getting Help
-- Check the browser console for error messages
-- Verify your data format matches the requirements
-- Ensure all dependencies are properly installed
-
-## 🔮 Future Enhancements
-
-- **Real-time Data**: API integration for live crime data
-- **Advanced Analytics**: Statistical analysis and trend detection
-- **Export Features**: Download charts and reports
-- **User Authentication**: Multi-user support with data privacy
-- **Mobile App**: React Native version for mobile devices
-- **Data Sources**: Integration with official crime databases
-
----
-
-**Built with ❤️ for better understanding and analysis of women-related crimes in Pune city.**
+For questions or support, please open an issue in the repository.

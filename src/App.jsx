@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import UploadData from './components/UploadData'
 import HeatmapChart from './components/HeatmapChart'
 import PuneCrimeMap from './components/PuneCrimeMap'
+import MaharashtraCrimeMap from './components/MaharashtraCrimeMap'
 import SidebarFilters from './components/SidebarFilters'
-import { BarChart3, Map, Upload, AlertCircle } from 'lucide-react'
+import { BarChart3, Map, Upload, AlertCircle, Globe, MapPin } from 'lucide-react'
 
 function App() {
   const [data, setData] = useState(null)
@@ -15,6 +16,7 @@ function App() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [currentView, setCurrentView] = useState('pune') // 'pune' or 'maharashtra'
 
   // Update filtered data when filters or data changes
   useEffect(() => {
@@ -84,7 +86,7 @@ function App() {
                 <BarChart3 className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Pune Crime Analytics</h1>
+                <h1 className="text-xl font-bold text-gray-900">Maharashtra Crime Analytics</h1>
                 <p className="text-sm text-gray-500">Women-related crimes visualization dashboard</p>
               </div>
             </div>
@@ -96,6 +98,40 @@ function App() {
           </div>
         </div>
       </motion.header>
+
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex space-x-8">
+            <button
+              onClick={() => setCurrentView('pune')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
+                currentView === 'pune'
+                  ? 'border-primary-500 text-primary-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center space-x-2">
+                <MapPin className="h-4 w-4" />
+                <span>Pune City</span>
+              </div>
+            </button>
+            <button
+              onClick={() => setCurrentView('maharashtra')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
+                currentView === 'maharashtra'
+                  ? 'border-primary-500 text-primary-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center space-x-2">
+                <Globe className="h-4 w-4" />
+                <span>Maharashtra State</span>
+              </div>
+            </button>
+          </nav>
+        </div>
+      </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -147,38 +183,56 @@ function App() {
                   </motion.div>
                 )}
 
-                {/* Heatmap Chart */}
-                <motion.div variants={itemVariants}>
-                  <div className="card">
-                    <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
-                        <BarChart3 className="h-5 w-5 text-primary-600" />
-                        <span>Crime Heatmap</span>
-                      </h2>
-                      <button
-                        onClick={() => setData(null)}
-                        className="btn-secondary text-sm"
-                      >
-                        <Upload className="h-4 w-4 mr-2" />
-                        Upload New Data
-                      </button>
-                    </div>
-                    <HeatmapChart data={filteredData} />
-                  </div>
-                </motion.div>
+                {/* Content based on current view */}
+                {currentView === 'pune' ? (
+                  <>
+                    {/* Heatmap Chart */}
+                    <motion.div variants={itemVariants}>
+                      <div className="card">
+                        <div className="flex items-center justify-between mb-4">
+                          <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                            <BarChart3 className="h-5 w-5 text-primary-600" />
+                            <span>Crime Heatmap</span>
+                          </h2>
+                          <button
+                            onClick={() => setData(null)}
+                            className="btn-secondary text-sm"
+                          >
+                            <Upload className="h-4 w-4 mr-2" />
+                            Upload New Data
+                          </button>
+                        </div>
+                        <HeatmapChart data={filteredData} />
+                      </div>
+                    </motion.div>
 
-                {/* Interactive Map */}
-                <motion.div variants={itemVariants}>
-                  <div className="card">
-                    <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
-                        <Map className="h-5 w-5 text-primary-600" />
-                        <span>Pune Crime Map</span>
-                      </h2>
+                    {/* Interactive Map */}
+                    <motion.div variants={itemVariants}>
+                      <div className="card">
+                        <div className="flex items-center justify-between mb-4">
+                          <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                            <Map className="h-5 w-5 text-primary-600" />
+                            <span>Pune Crime Map</span>
+                          </h2>
+                        </div>
+                        <PuneCrimeMap data={filteredData} />
+                      </div>
+                    </motion.div>
+                  </>
+                ) : (
+                  /* Maharashtra State View */
+                  <motion.div variants={itemVariants}>
+                    <div className="card">
+                      <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                          <Globe className="h-5 w-5 text-primary-600" />
+                          <span>Maharashtra State Crime Analysis</span>
+                        </h2>
+                      </div>
+                      <MaharashtraCrimeMap data={filteredData} />
                     </div>
-                    <PuneCrimeMap data={filteredData} />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                )}
               </motion.div>
             </motion.div>
           )}
